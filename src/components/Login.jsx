@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Hook para redirección
 
 const Login = ({ setIsAuthenticated }) => {
@@ -9,19 +8,32 @@ const Login = ({ setIsAuthenticated }) => {
 
   const navigate = useNavigate(); // Inicializar hook para navegación
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
+      const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       });
-      if (response.status === 200) {
-        setIsAuthenticated(true); // Marca que el usuario está autenticado
-        navigate("/crud"); // Redirige al CRUD tras éxito
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login exitoso:", data);
+
+        // Marcar autenticado y redirigir al CRUD
+        setIsAuthenticated(true);
+        navigate("/crud");
+      } else {
+        setMessage("Error en las credenciales");
+        console.error("Error en el login:", response.statusText);
       }
     } catch (error) {
-      setMessage(error.response?.data?.message || "Error al iniciar sesión");
+      setMessage("Error de red, intente nuevamente");
+      console.error("Error de red:", error);
     }
   };
 

@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 const CrudUsers = () => {
     const [users, setUsers] = useState([]);
     const [formData, setFormData] = useState({
         id: null,
         nombre: "",
         email: "",
-        contrasena: "",
+        password: "", // Ajustado para que coincida con "password"
         edad: "",
     });
 
     const [isEditing, setIsEditing] = useState(false);
 
+    // Obtener usuarios desde el backend
     const fetchUsers = async () => {
         try {
-            const response = await axios.get("http://localhost:3000/users");
+            const response = await axios.get("http://localhost:3000/api/users");
             setUsers(response.data);
         } catch (error) {
             console.error("Error al obtener los usuarios:", error);
         }
     };
 
+    // Crear usuario nuevo
     const handleCreateUser = async () => {
         try {
-            await axios.post("http://localhost:3000/users", formData);
+            await axios.post("http://localhost:3000/api/users", {
+                nombre: formData.nombre,
+                email: formData.email,
+                password: formData.password,
+                edad: formData.edad,
+            });
             fetchUsers();
             resetForm();
         } catch (error) {
@@ -33,9 +39,15 @@ const CrudUsers = () => {
         }
     };
 
+    // Editar usuario existente
     const handleEditUser = async () => {
         try {
-            await axios.put(`http://localhost:3000/users/${formData.id}`, formData);
+            await axios.put(`http://localhost:3000/api/users/${formData.id}`, {
+                nombre: formData.nombre,
+                email: formData.email,
+                password: formData.password,
+                edad: formData.edad,
+            });
             fetchUsers();
             resetForm();
         } catch (error) {
@@ -43,41 +55,46 @@ const CrudUsers = () => {
         }
     };
 
+    // Eliminar usuario
     const handleDeleteUser = async (userId) => {
         try {
-            await axios.delete(`http://localhost:3000/users/${userId}`);
+            await axios.delete(`http://localhost:3000/api/users/${userId}`);
             fetchUsers();
         } catch (error) {
             console.error("Error al eliminar el usuario:", error);
         }
     };
 
+    // Configurar usuario para edición
     const handleSetEditUser = (user) => {
         setFormData({
             id: user.id,
             nombre: user.nombre,
             email: user.email,
-            contrasena: "",
+            password: "", // Se requerirá ingresar una nueva contraseña al editar
             edad: user.edad,
         });
         setIsEditing(true);
     };
 
+    // Resetear el formulario
     const resetForm = () => {
         setFormData({
             id: null,
             nombre: "",
             email: "",
-            contrasena: "",
+            password: "",
             edad: "",
         });
         setIsEditing(false);
     };
 
+    // Manejo de cambios en el formulario
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    // Obtener usuarios al montar el componente
     useEffect(() => {
         fetchUsers();
     }, []);
@@ -97,6 +114,7 @@ const CrudUsers = () => {
                     placeholder="Nombre"
                     value={formData.nombre}
                     onChange={handleInputChange}
+                    required
                 />
                 <input
                     type="email"
@@ -104,12 +122,13 @@ const CrudUsers = () => {
                     placeholder="Email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    required
                 />
                 <input
                     type="password"
-                    name="contrasena"
+                    name="password"
                     placeholder="Contraseña"
-                    value={formData.contrasena}
+                    value={formData.password}
                     onChange={handleInputChange}
                     required={!isEditing}
                 />
@@ -119,6 +138,7 @@ const CrudUsers = () => {
                     placeholder="Edad"
                     value={formData.edad}
                     onChange={handleInputChange}
+                    required
                 />
                 <button type="submit">{isEditing ? "Actualizar Usuario" : "Crear Usuario"}</button>
                 {isEditing && <button onClick={resetForm}>Cancelar</button>}
