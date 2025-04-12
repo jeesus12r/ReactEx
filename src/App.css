@@ -1,145 +1,529 @@
-/* Estilo general */
+/* Estilos globales */
+:root {
+  --primary-color: #4a6cf7;
+  --primary-hover: #3a56d4;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text-color);
+  background-color: #f5f7fb;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
-/* Contenedor principal */
-div {
-  max-width: 800px;
-  margin: 20px auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+/* Componente Login */
+.login-container {
+  max-width: 450px;
+  margin: 80px auto;
+  padding: 32px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-/* Título */
-h1 {
+.login-container h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  color: var(--dark-color);
+  font-weight: 600;
 }
 
-/* Formulario */
-form {
+.login-container form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-input {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.login-container label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--dark-color);
 }
 
-button {
-  padding: 10px 15px;
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s;
+.login-container input {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 16px;
+  transition: var(--transition);
 }
 
-button:hover {
-  background-color: #45A049;
+.login-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
 }
 
-/* Lista de usuarios */
-h2 {
-  margin-top: 20px;
-  color: #333;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  margin-bottom: 5px;
-  border-radius: 4px;
-}
-
-li button {
-  background-color: #f44336;
-  border: none;
+.login-container button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
   color: white;
-  padding: 5px 10px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
+  transition: var(--transition);
+  margin-top: 8px;
 }
 
-li button:hover {
-  background-color: #e53935;
+.login-container button:hover {
+  background-color: var(--primary-hover);
 }
 
-/* Tabla de usuarios */
+.login-container .link-registro {
+  text-align: center;
+  display: block;
+  margin: 16px 0;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.login-container .link-registro:hover {
+  text-decoration: underline;
+}
+
+.login-container .mensaje {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-container .error {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.login-container .exito {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+/* Componente Registro */
+.registro-container {
+  max-width: 450px;
+  margin: 60px auto;
+  padding: 32px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.registro-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+.registro-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registro-form label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--dark-color);
+}
+
+.registro-form input {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+.registro-form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+.registro-form .submit-button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.registro-form .submit-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.registro-container .mensaje {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 14px;
+}
+
+.registro-container .error {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.registro-container .exito {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+/* Componente CrudUsers */
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-  background: #fff;
+  margin: 25px 0;
+  font-size: 16px;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.user-table thead {
+  background-color: var(--primary-color);
+  color: white;
 }
 
 .user-table th,
 .user-table td {
-  border: 1px solid #ddd;
-  text-align: center;
-  padding: 10px;
+  padding: 14px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.user-table th {
-  background-color: #4CAF50;
-  color: white;
+.user-table tbody tr:hover {
+  background-color: rgba(74, 108, 247, 0.05);
 }
 
-.user-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+.user-table h1, 
+.user-table h2 {
+  color: var(--dark-color);
+  margin-bottom: 20px;
 }
 
-.user-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Botones dentro de la tabla */
-.user-table button {
-  padding: 5px 10px;
-  margin: 0 5px;
-  font-size: 0.9rem;
+.edit-btn, 
+.delete-btn {
+  padding: 8px 14px;
+  margin-right: 8px;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius);
   cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.edit-btn {
+  background-color: #17a2b8;
   color: white;
-  transition: background-color 0.3s;
 }
 
-.user-table button:first-of-type {
-  background-color: #4CAF50;
+.edit-btn:hover {
+  background-color: #138496;
 }
 
-.user-table button:first-of-type:hover {
-  background-color: #45A049;
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
 }
 
-.user-table button:last-of-type {
-  background-color: #f44336;
+.delete-btn:hover {
+  background-color: #c82333;
 }
 
-.user-table button:last-of-type:hover {
-  background-color: #e53935;
+/* Componente EditUser */
+form {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 32px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--dark-color);
+  font-weight: 600;
+}
+
+form input {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 16px;
+  transition: var(--transition);
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+form button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+form button:hover {
+  background-color: var(--primary-hover);
+}
+
+form button[type="button"] {
+  background-color: var(--secondary-color);
+}
+
+form button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  .login-container,
+  .registro-container,
+  form {
+    max-width: 95%;
+    padding: 24px;
+    margin: 40px auto;
+  }
+  
+  .user-table {
+    font-size: 14px;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 10px 12px;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+.logout-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
+}
+
+
+/* Estilos para el componente Login */
+:root {
+  --primary-color: #4a6cf7;
+  --primary-hover: #3a56d4;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --text-color: #212529;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+  font-family: var(--font-family);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 32px;
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--dark-color);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.login-message {
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-error {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.login-success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--dark-color);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 16px;
+  transition: var(--transition);
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+}
+
+.login-register-link {
+  text-align: center;
+  display: block;
+  margin: 16px 0;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.login-register-link:hover {
+  text-decoration: underline;
+  color: var(--primary-hover);
+}
+
+.login-button {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 8px;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .login-container {
+    max-width: 100%;
+    padding: 24px;
+    margin: 0 16px;
+  }
+  
+  .login-button {
+    width: 100%;
+  }
+}
+
+.login-register-link {
+  display: inline-block; /* Esto asegura que se vea como un botón si es necesario */
+  text-decoration: none; /* Quita el subrayado */
+  color: white; /* Cambia el color del texto */
+  background-color: #007bff; /* Fondo azul */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 16px; /* Tamaño del texto */
+  font-weight: bold; /* Texto en negrita */
+  text-align: center; /* Centrar texto */
+  transition: background-color 0.3s ease; /* Animación suave en hover */
+}
+
+.login-register-link:hover {
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+  color: white; /* Asegura que el texto siga siendo legible */
 }

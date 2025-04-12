@@ -1,36 +1,26 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-
-import Login from "./components/Login"; // Importa Login correctamente
-import CrudUsers from "./components/CrudUsers"; // Importa CrudUsers correctamente
-import "./App.css"; // Corregir ruta de estilos
+import Login from "./components/Login"; // Importa el componente Login
+import CrudUsers from "./components/CrudUsers"; // Importa el componente CrudUsers
+import Registro from "./components/Registro"; // Importa el componente Registro
+import "./App.css"; 
+import EditUser from "./components/EditUser";
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  
 
   return (
     <Router>
       <Routes>
-        {/* Ruta de Login */}
-        <Route
-          path="/login"
-          element={<Login setIsAuthenticated={setIsAuthenticated} />}
-        />
+      
+      <Route path="/" element={<Login />} />
+      <Route path="/CrudUsers" element={<CrudUsers />} />
+      <Route path="/Registro" element={<Registro />} />
+      <Route path="/EditUser/:id" element={<EditUser />} />
 
-        {/* Ruta protegida del CRUD */}
-        <Route
-          path="/crud"
-          element={
-            isAuthenticated ? (
-              <CrudUsers />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+        
 
-        {/* Redirigir cualquier otra ruta al Login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        
       </Routes>
     </Router>
   );
